@@ -1,10 +1,7 @@
 <x-layout>
-
-<div class="cass container-fluid p-5 bg-secondary-subtle text-center ">
-    <div class="row justify-content-center">
-        <div class="col-12">
+    <div class="container-fluid p-5 bg-info text-center text-white ">
+        <div class="row justify-content-center">
             <h1 class="display-1">The Aulab Post</h1>
         </div>
     </div>
-</div>
 </x-layout>

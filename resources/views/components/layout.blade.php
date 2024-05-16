@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>The Aulab Post</title>
+
     @vite(['resources/css/app.css','resources/js/app.js'])
 
-    <title>The Aulab Post</title>
+    
 </head>
 <body>
     <x-navbar />
 
-    <div class="min-vh-100">
          {{$slot}}
-    </div>
     
 </body>
 </html>
