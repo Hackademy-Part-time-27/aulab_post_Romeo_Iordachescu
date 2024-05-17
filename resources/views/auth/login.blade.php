@@ -18,7 +18,7 @@
                     </div>
                 @endif
 
-                <form class="card p-5 shadow" action="{{route('login}}" method="POST">
+                <form class="card p-5 shadow" action="{{route('login')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
@@ -36,4 +36,4 @@
             </div>
         </div>
     </div>           
-<x-layout>    
+</x-layout>    

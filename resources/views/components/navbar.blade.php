@@ -6,6 +6,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"  href="{{ route('article.create') }}" > Inserisci un articolo</a>
+        </li>
 @auth
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,7 +18,7 @@
               <li class="nav-item">
                   <form action="{{route('logout')}}" id="logout-form" method="POST" >
                     @csrf
-                    <button type="submit" class="btn nav-link">logout</button>
+                    <button type="submit" class="btn nav-link">Logout</button>
                   </form>
               <li>
           </ul>
@@ -28,7 +31,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{route('register')}}">Registrati</a></li>
-                <li><a class="dropdown-item" href="{{route('register')}}">Accedi</a></li>
+                <li><a class="dropdown-item" href="{{route('login')}}">Accedi</a></li>
               </ul>
           </li>
 @endguest
