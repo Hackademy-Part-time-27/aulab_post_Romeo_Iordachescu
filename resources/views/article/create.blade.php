@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container-fluid p-5 bg-info text-center text-white ">
+    <div class="container-fluid p-5 bg-info text-center text-white">
         <div class="row justify-content-center">
             <h1 class="display-1">Inserisci un articolo</h1>
         </div>
@@ -11,12 +11,12 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                        <li>{{ $error}}</li>
+                        <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
                 @endif
-                <form action="{{ route('article.store') }}" method="post" class="card p-5 shadow" enctype="multipart/form-data">
+                <form action="{{ route('article.store') }}" method="POST" class="card p-5 shadow" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
