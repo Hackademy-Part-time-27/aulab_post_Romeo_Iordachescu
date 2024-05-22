@@ -13,11 +13,13 @@ use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 
-class PublicController extends Controller
+class PublicController extends Controller implements HasMiddleware
 {
-    public function __contruct()
+    public static function middleware()
         {
-            $this->middleware('auth')->except(homepage);
+            return [
+                new middleware('auth',except:['homepage']),
+            ];   
         }
 
         public function homepage()

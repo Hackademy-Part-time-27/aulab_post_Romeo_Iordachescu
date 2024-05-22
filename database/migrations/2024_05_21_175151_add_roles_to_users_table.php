@@ -20,7 +20,7 @@ return new class extends Migration
 
         $user = User::create([
             'name' => 'Admin',
-            'email' => 'admin@theaulabpost.it',
+            'email' => 'admin@example.com',
             'password' => bcrypt('12345678'),
             'is_admin' => true,
         ]);

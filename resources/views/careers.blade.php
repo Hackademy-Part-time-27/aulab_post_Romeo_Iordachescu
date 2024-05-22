@@ -8,11 +8,11 @@
         <div class="row justify-conent-center align-items-center border rounded p-2 shadow">
             <div class="col-12 col-md-6">
                 <h2>Lavora come amministratore</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum nemo ex quisquam, numquam in cumque temporibus. Molestias, adipisci! Omnis, ea!</p>
+                <p>Scegliendo di lavorare come amministratore, ti occuperai di gestire le richieste di lavoro e di aggiungere e modificare le categorie!</p>
                 <h2>Lavora come revisore</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum nemo ex quisquam, numquam in cumque temporibus. Molestias, adipisci! Omnis, ea!</p>
+                <p>Scegliendo lavorare come revisore, deciderai se un articolo può essere pulicato e meno in piataforma!</p>
                 <h2>Lavora come redattore</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum nemo ex quisquam, numquam in cumque temporibus. Molestias, adipisci! Omnis, ea!</p>
+                <p>Scegliendo di lavorare come redattore, potrai scrivere gli articoli che saranno pubblicati!</p>
             </div>
             <div class="col-12 col-md-6">
                 @if ($errors->any())

@@ -7,14 +7,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link"  href="{{ route('article.create') }}" > Inserisci un articolo</a>
+          <a class="nav-link active"  href="{{ route('article.create') }}" > Inserisci un articolo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="{{ route('article.index') }}" > Tutti gli articoli</a>
+          <a class="nav-link active"  href="{{ route('article.index') }}" > Tutti gli articoli</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  href="{{ route('careers') }}" >Lavora con noi</a>
         </li>
 @auth
+      @if(Auth::user()->is_admin)
+        <li class="nav-item">
+             <a class="nav-link active"  href="{{ route('admin.dashboard') }}" >Dashboard Admin</a>
+        </li>
+      @endif
       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Benvenuto {{Auth::user()->name}} 
           </a>
           <ul class="dropdown-menu">
