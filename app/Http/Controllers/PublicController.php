@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\User;
 use App\Mail\CareerRequestMail;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +23,7 @@ class PublicController extends Controller implements HasMiddleware
 
         public function homepage()
         {
-            $articles = Article::orderBy('created_at', 'desc')->take(4)->get();
+            $articles = Article::where('is_accepted' , true)->orderBy('created_at', 'desc')->take(4)->get();
             return view('welcome', compact('articles'));
         }
 

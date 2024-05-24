@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
@@ -24,21 +25,21 @@ class ArticleController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->get();
-
+        $articles = Article::where('is_accepted' , true)->orderBy('created_at', 'desc')->get();
+       
         return view('article.index', compact('articles'));
     }
 
     public function byCategory(Category $category)
     {
-        $articles = $category->articles()->orderby('created_at', 'desc')->get();
+        $articles = $category->articles()->where('is_accepted' , true)->orderby('created_at', 'desc')->get();
         return view('article.by-category' , compact('category' , 'articles'));
     }
 
     public function byUser(User $user)
     {
-        $articles = Article::where('user_id', $user->id)->get();
-        return view('article.by-user', compact('articles', 'user'));
+        $articles = $user->articles()->where('is_accepted', true)->orderBy('created_at', 'desc')->get();
+        return view('article.by-user', compact('user', 'articles'));
     }
 
 
