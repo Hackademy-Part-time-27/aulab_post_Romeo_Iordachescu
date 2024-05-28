@@ -9,27 +9,27 @@
         {{ session('mesage') }}
     </div>
     @endif
-    <div class="container my-5">
+    <div class="container my-5 table-responsive">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli in esame</h2>
-                <x-writer-articles-table :articles="$unrevisionedArticles />
+                <x-articles-table :articles="$unrevisionedArticles" />
             </div>
         </div>
     </div>
-    <div class="container my-5">
+    <div class="container my-5 table-responsive">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli accetati</h2>
-                <x-writer-articles-table :articles="$acceptedArticles" />
+                <x-articles-table :articles="$acceptedArticles" />
             </div>
         </div>
     </div>
-    <div class="container my-5">
+    <div class="container my-5 table-responsive">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2>Articoli respinti</h2>
-                <x-writer-articles-table :articles="$rejectedArticles" />
+                <x-articles-table :articles="$rejectedArticles" />
             </div>
         </div>
     </div>

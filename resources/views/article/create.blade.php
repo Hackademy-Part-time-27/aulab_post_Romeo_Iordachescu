@@ -32,6 +32,11 @@
                         <input type="file" name="image" class="form-control" id="image">
                     </div>
                     <div class="mb-3">
+                        <label for="tags" class="form-label">Tags:</label>
+                        <input name="tags" class="form-control" id="tags" value="{{ old('tags') }}">
+                        <span class="small fst-italic">Dividi ogni tag con una virgola</span>
+                    </div>
+                    <div class="mb-3">
                         <label for="category" class="form-label">Categoria:</label>
                         <select name="category" id="category" class="form-control text-capitalize">
                             @foreach ($categories as $category)

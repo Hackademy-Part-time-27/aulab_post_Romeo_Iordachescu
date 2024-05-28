@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -16,7 +18,7 @@ class ArticleController extends Controller implements HasMiddleware
    public static function middleware()
    {
         return [
-            new Middleware('auth',except:['index','show','byCategory','byUser']),
+            new Middleware('auth',except:['index','show','byCategory','byUser','articleSearch']),
         ];
    }
 
@@ -29,6 +31,15 @@ class ArticleController extends Controller implements HasMiddleware
        
         return view('article.index', compact('articles'));
     }
+
+    public function articleSearch(Request $request)
+       {
+        $query = $request->input('query');
+        $articles = Article::search($query)->where('is_accepted' , true)->orderby('created_at', 'desc')->get();
+
+        return view('article.search-index', compact('articles' , 'query'));
+       }
+
 
     public function byCategory(Category $category)
     {
@@ -62,6 +73,7 @@ class ArticleController extends Controller implements HasMiddleware
             'body'=> 'required|min:10',
             'image'=> 'image|required',
             'category'=> 'required',
+            'tags' => 'required',
         ]);
         
         $article = Article::create([
@@ -72,6 +84,19 @@ class ArticleController extends Controller implements HasMiddleware
             'category_id'=> $request->category,
             'user_id' => Auth::user()->id,
         ]);
+
+        $tags = explode(',' , $request-> tags);
+
+        foreach ($tags as $i => $tag) {
+            $tags[$i] = trim($tag);
+        }
+
+        foreach ($tags as $tag) {
+            $newTag= Tag::updateOrCreate([
+                'name' => strtolower($tag)
+                ]);
+            $article->tags()->attach($newTag);
+        }
 
         return redirect(route('homepage'))->with('message' , 'Articolo creato corretamente');
     }
