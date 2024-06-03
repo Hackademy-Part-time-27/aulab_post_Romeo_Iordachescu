@@ -13,7 +13,7 @@ Route::get('/', [PublicController::class,'homepage'])->name('homepage');
 Route::get('/article/create', [ArticleController::class,'create'])->name('article.create');
 Route::post('/article/store', [ArticleController::class,'store'])->name('article.store');
 Route::get('/article/index', [ArticleController::class,'index'])->name('article.index');
-Route::get('/article/show/{article}', [ArticleController::class,'show'])->name('article.show');
+Route::get('/article/show/{article:slug}', [ArticleController::class,'show'])->name('article.show');
 Route::get('/article/category/{category}', [ArticleController::class,'byCategory'])->name('article.byCategory');
 Route::get('/article/user/{user}', [ArticleController::class, 'byUser'])->name('article.byUser');
 Route::get('/careers', [PublicController::class, 'careers'])->name('careers');
@@ -29,7 +29,10 @@ Route::middleware('admin')->group(function(){
     Route::delete('/admin/delete/{tag}/tag', [AdminController::class,'deleteTag'])->name('admin.deleteTag');
     Route::put('/admin/edit/{category}/category', [AdminController::class,'editCategory'])->name('admin.editCategory');
     Route::delete('/admin/delete/{category}/category', [AdminController::class,'deleteCategory'])->name('admin.deleteCategory');
-    Route::post('/admin/category/sore' , [AdminController::class, 'storeCategory'])->name('admin.storeCategory');
+    Route::post('/admin/category/store' , [AdminController::class, 'storeCategory'])->name('admin.storeCategory');
+    Route::patch('/admin/rejectAdmin/{user}', [AdminController::class, 'rejectAdmin'])->name('admin.rejectAdmin');
+    Route::patch('/admin/rejectRevisor/{user}', [AdminController::class, 'rejectRevisor'])->name('admin.rejectRevisor');
+    Route::patch('/admin/rejectWriter/{user}', [AdminController::class, 'rejectWriter'])->name('admin.rejectWriter');
 });
 
 Route::middleware('revisor')->group(function(){
@@ -43,5 +46,8 @@ Route::middleware('writer')->group(function () {
     Route::get('/writer/dashboard', [WriterController::class, 'dashboard'])->name('writer.dashboard');
     Route::get('/article/create',[ArticleController::class, 'create'])->name('article.create');
     Route::post('/article/store',[ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/{article}/edit/',[ArticleController::class, 'edit'])->name('article.edit');
+    Route::put('/article/{article}/update/',[ArticleController::class, 'update'])->name('article.update');
+    Route::delete('/article/{article}/destroy/',[ArticleController::class, 'destroy'])->name('article.destroy');
     
 });

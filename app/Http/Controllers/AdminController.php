@@ -54,7 +54,7 @@ class AdminController extends Controller
         }
 
         $tag->delete();
-        return redirect(route('admin.dashboard'))->with('message' , 'Hai correttamente eliminato il tag');
+        return redirect()->back()->with('message' , 'Hai correttamente eliminato il tag');
     }
 
     public function editCategory(Request $request , Category $category){
@@ -66,13 +66,13 @@ class AdminController extends Controller
             'name' => strtolower($request->name),
         ]);
 
-        return redirect(route('admin.dashboard'))->with('message' , 'Hai correttamente aggiornato la categoria');
+        return redirect()->back()->with('message' , 'Hai correttamente aggiornato la categoria');
     }
 
     public function deleteCategory(Category $category){
     
         $category->delete();
-        return redirect(route('admin.dashboard'))->with('message' , 'Hai correttamente eliminato la cateogria');
+        return redirect()->back()->with('message' , 'Hai correttamente eliminato la cateogria');
     }
 
     public function storeCategory(Request $request){
@@ -80,7 +80,42 @@ class AdminController extends Controller
             'name'=> strtolower($request->name),
         ]);
 
-        return redirect(route('admin.dashboard'))->with('message' , 'Hai correttamente inserito una nuova categoria');
+        return redirect()->back()->with('message' , 'Hai correttamente inserito una nuova categoria');
+    }
+    public function rejectAdmin(User $user) {
+        $user->is_admin = false;
+        $user->save();
+    
+        $adminRequests = collect(session('adminRequests'))->reject(function ($requestUser) use ($user) {
+            return $requestUser->id === $user->id;
+        });
+        session(['adminRequests' => $adminRequests->values()->all()]);
+    
+        return redirect(route('admin.dashboard'))->with('message', 'Richiesta dell amministratore respinta correttamente');
+    }
+    
+    public function rejectRevisor(User $user) {
+        $user->is_revisor = false;
+        $user->save();
+    
+        $revisorRequests = collect(session('revisorRequests'))->reject(function ($requestUser) use ($user) {
+            return $requestUser->id === $user->id;
+        });
+        session(['revisorRequests' => $revisorRequests->values()->all()]);
+    
+        return redirect(route('admin.dashboard'))->with('message', 'Richiesta dello revisore respinta corretamente.');
+    }
+    
+    public function rejectWriter(User $user) {
+        $user->is_writer = false;
+        $user->save();
+    
+        $writerRequests = collect(session('writerRequests'))->reject(function ($requestUser) use ($user) {
+            return $requestUser->id === $user->id;
+        });
+        session(['writerRequests' => $writerRequests->values()->all()]);
+    
+        return redirect(route('admin.dashboard'))->with('message', 'Richiesta dello redattore respinta corretamente.');
     }
     
 }

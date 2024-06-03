@@ -15,7 +15,6 @@
         @endif
 
         
-        
         @if ($article->tags)
 
             <p class="small fst-italic text-capitalize">
