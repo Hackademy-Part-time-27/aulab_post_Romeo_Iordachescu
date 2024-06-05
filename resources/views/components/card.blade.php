@@ -13,7 +13,7 @@
                 Non categorizzato
             </p>
         @endif
-
+        <span class="text-muted small fst-italic">timpo di lettura {{$article->readDuration()}} min </span>
         
         @if ($article->tags)
 

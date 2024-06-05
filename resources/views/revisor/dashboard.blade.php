@@ -16,6 +16,7 @@
                 <x-articles-table :articles="$unrevisionedArticles" />
             </div>
         </div>
+    </div>
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -23,7 +24,7 @@
                 <x-articles-table :articles="$acceptedArticles" />
             </div>
         </div>
-</div>
+    </div>
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-12">
